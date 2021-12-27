@@ -2,77 +2,55 @@ package ru.skypro;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main ( String[] args ) {
         //Задание 1
         int clientOS = 1;
-        if (clientOS == 0){
+        if (clientOS == 0) {
             System.out.println("Установите версию приложения для iOS по ссылке");
-        }
-        else if (clientOS == 1){
+        } else if (clientOS == 1) {
             System.out.println("Установите версию приложения для Android по ссылке");
         }
 
         // Задание 2
-        // Использовал два варианта реализации условного оператора, в первом случае (Android) if-else if конструкция,
-        // во втором (iOS) - через одно вложение
         int operationalSystem = 1;
         int clientDeviceYear = 2014;
-        if (operationalSystem == 1 && clientDeviceYear >= 2015){
+        boolean yearCheck = clientDeviceYear >= 2015;
+        if (operationalSystem == 1 && yearCheck) {
             System.out.println("Установите версию приложения для Android по ссылке");
-        }
-        else if (operationalSystem == 1 && clientDeviceYear < 2015){
+        } else if (operationalSystem == 1) {
             System.out.println("Установите облегченную версию приложения для Android по ссылке");
         }
-        else if(operationalSystem == 0){
-            if(clientDeviceYear >= 2015) {
-                System.out.println("Установите версию приложения для iOS по ссылке");
-            }
-            else{
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-            }
-
+        if (operationalSystem == 0 && yearCheck) {
+            System.out.println("Установите версию приложения для iOS по ссылке");
+        } else if (operationalSystem == 0) {
+            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
         }
+
 
         //Задание 3
-        int year = 700;
-        var yearCheck1 = year % 4;
-        var yearCheck2 = year % 100;
-        var yearCheck3 = year % 400;
-        if(yearCheck1 == 0){ // Сначала проверяем кратен ли год числу 4.
-            if(yearCheck2 ==0 && yearCheck3 != 0){ // Если делится, проверим кратен ли он 100 И не кратен 400
-                // При выполнении обоих условий год не високосен, о чем выводится уведомление:
-                System.out.println("Введенный год не является високосным");
-            }
-            else{// При невыполнении хотя бы одного из условий нет причин этому году быть невисокосным, поскольку уже
-                // известно изначально что он кратен 4:
-                System.out.println("Введенный год является високосным");
-            }
-        }
-        else{ // Если год изначально не кратен 4, то он не будет кратен ни 100, ни 400, следовательно, он изначально
-            // не является високосным:
+        int year = 1900;
+        boolean leapYearCheck = (year % 4 == 0) && ((year % 100 != 0) || year % 400 == 0);
+        //True когда кратен 4 И (не кратен 100 ИЛИ кратен 400)
+        if (leapYearCheck) {
+            System.out.println("Введенный год является високосным");
+        } else {
             System.out.println("Введенный год не является високосным");
         }
-
 
 
         //Задание 4
         double deliveryDistance = 96;
         int deliveryDays = 1;
-        if(deliveryDistance <=20){
-            System.out.println("Срок доставки составит: " + deliveryDays);
-        }
-        else if(deliveryDistance >20 && deliveryDistance <= 60){
+        if (deliveryDistance > 20 && deliveryDistance <= 60) {
             deliveryDays += 1;
-            System.out.println("Потребуется дней: " + deliveryDays);
-        }
-        else if(deliveryDistance >60){
+        } else if (deliveryDistance > 60) {
             deliveryDays += 2;
-            System.out.println("Потребуется дней: " + deliveryDays);
         }
+        System.out.println("Потребуется дней: " + deliveryDays);
         //Задание 5
 
         int monthNumber = 12;
-        switch(monthNumber){
+        switch (monthNumber) {
             case 1:
             case 2:
             case 12:
@@ -96,5 +74,5 @@ public class Main {
             default:
                 System.out.println("Такого месяца не существует!");
         }
-        }
     }
+}
